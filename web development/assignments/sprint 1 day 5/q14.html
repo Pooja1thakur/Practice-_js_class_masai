@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/submit" method="post">
+        <label for="username">Enter Username:</label>
+        <input type="text" id="username" name="username" required>
+      
+        <label for="password">Password:</label>
+        <input type="password" id="passcode" name="password" required>
+      
+        <button type="submit">Submit Form</button>
+      </form>
+</body>
+
+
+
+<!-- 
+Explanation of Changes:
+1.label "for" attribute: The for attribute in the <label> tag should match the id attribute of the corresponding <input> element to associate the label with the input field. Also, attribute names in HTML should be lowercase (for instead of Name).
+Closing tag for <input>:
+
+2.The <input> tag is self-closing in HTML, so it should properly have the closing > character to ensure the tag is valid.
+Incorrect type attribute value for password field:
+
+3. The attribute typ was misspelled and should be type. This ensures the field behaves as a password input, masking the characters entered.
+Incorrect closing of <button> tag:
+
+4.The closing tag for the button was misspelled (</buttn>), which needed to be corrected to </button>. Additionally, the type="submit" attribute is required to indicate that this button is used for submitting the form. Without this, the button might not trigger the form submission. -->
+
+
+
+</html>
+
+
+
