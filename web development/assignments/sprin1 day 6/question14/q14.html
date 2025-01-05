@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Multi-Method CSS Example</title>
+  <style>
+    h1 {
+      color: navy;
+      font-size: 28px;
+      background-color: #f0f0f0; 
+    }
+    .highlighted-text {
+      background-color: yellow;
+      color: red;
+    }
+  </style>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <h1>Main Title</h1>
+  <p style="font-size: 16px; color: #333333;">This paragraph has inline styles applied.</p> <!-- Fixed hex color code -->
+  <p class="highlighted-text">This paragraph uses a class-based style.</p>
+  <div id="main-container">
+    <p>This div should have styles from the external stylesheet.</p>
+  </div>
+
+</body>
+
+
+
+</html>
+
+<!-- Explanation of Fixes:
+Inline styles (<p> tag):
+
+Error: The color #3333 is not a valid hex color code (it is missing the last pair of hex digits).
+Fix: Changed #3333 to #333333 to make it a valid hex code for a dark gray color.
+Internal styles (in the <style> tag):
+
+Error: The background color #f0f0 is incomplete because it only has three digits, which is invalid in CSS for hex color codes.
+Fix: Changed #f0f0 to #f0f0f0 to make it a valid six-digit hex color code.
+External CSS (styles.css):
+
+No errors were found in the external stylesheet, and it correctly applies styles to the #main-container div as expected. -->
