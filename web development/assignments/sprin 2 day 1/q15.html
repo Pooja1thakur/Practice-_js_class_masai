@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Styled Navigation Bar</title>
+  <style>
+    
+    nav {
+      display: flex;
+      justify-content: space-between;
+      background-color: #f8f9fa;
+      padding: 10px;
+    }
+
+    section {
+      padding: 10px;
+    }
+
+    
+    section#section1 a {
+      color: blue;
+    }
+
+    section#section2 a {
+      color: green;
+    }
+
+    section#section3 a {
+      color: purple;
+    }
+
+    
+    section > a {
+      font-weight: bold;
+      text-decoration: underline;
+    }
+
+
+    a:hover {
+      color: orange;
+      text-decoration: none;
+    }
+
+    a:active {
+      color: red;
+    }
+
+    
+    a[href^="https"] {
+      color: darkcyan !important; 
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    
+    <section id="section1">
+      <a href="#home">Home</a>
+      <div>
+        <a href="#about">About</a>
+        <a href="https://example.com">External Link</a>
+      </div>
+    </section>
+    
+    
+    <section id="section2">
+      <a href="#services">Services</a>
+      <div>
+        <a href="#consulting">Consulting</a>
+        <a href="https://another-example.com">Another External Link</a>
+      </div>
+    </section>
+    
+    
+    <section id="section3">
+      <a href="#contact">Contact</a>
+      <div>
+        <a href="#email">Email</a>
+        <a href="#phone">Phone</a>
+      </div>
+    </section>
+  </nav>
+</body>
+</html>
