@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Card Layout</title>
+  <style>
+
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+  background-color: #f4f4f4;
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: 1fr; 
+  gap: 20px;
+  padding: 10px;
+}
+
+.card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.card h2 {
+  margin: 15px;
+  font-size: 1.5rem;
+}
+
+.card p {
+  margin: 15px;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #555;
+}
+
+.card button {
+  margin: 15px;
+  padding: 10px 15px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.card button:hover {
+  background-color: #0056b3;
+}
+
+
+@media (min-width: 600px) {
+  .card-container {
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 30px;
+  }
+}
+
+
+@media (min-width: 1024px) {
+  .card-container {
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 40px;
+  }
+}
+
+
+
+  </style>
+</head>
+<body>
+  <h1>Responsive Card Layout</h1>
+  <div class="card-container">
+    <div class="card">
+      <img src="https://via.placeholder.com/300" alt="Card Image">
+      <h2>Card Title 1</h2>
+      <p>This is a description for card 1.</p>
+      <button>Learn More</button>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/300" alt="Card Image">
+      <h2>Card Title 2</h2>
+      <p>This is a description for card 2.</p>
+      <button>Learn More</button>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/300" alt="Card Image">
+      <h2>Card Title 3</h2>
+      <p>This is a description for card 3.</p>
+      <button>Learn More</button>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/300" alt="Card Image">
+      <h2>Card Title 4</h2>
+      <p>This is a description for card 4.</p>
+      <button>Learn More</button>
+    </div>
+  </div>
+</body>
+</html>
