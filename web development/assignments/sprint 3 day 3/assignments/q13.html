@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Propagation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .box {
+            padding: 20px;
+            margin: 10px;
+            border: 2px solid black;
+        }
+        .box1 { background-color: #f8d7da; }
+        .box2 { background-color: #d4edda; }
+        .box3 { background-color: #d1ecf1; }
+    </style>
+</head>
+<body>
+    <div class="box box1" id="div1">
+        Div 1
+        <button id="btn1">Button 1</button>
+        <div class="box box2" id="div2">
+            Div 2
+            <button id="btn2">Button 2</button>
+            <div class="box box3" id="div3">
+                Div 3
+                <button id="btn3">Button 3</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        function addListeners(element, name) {
+        
+            element.addEventListener('click', () => {
+                alert(`${name} clicked in Bubbling Phase`);
+            });
+
+        
+            element.addEventListener('click', () => {
+                alert(`${name} clicked in Capturing Phase`);
+            }, true);
+        }
+
+        
+        addListeners(document.getElementById('div1'), 'Div 1');
+        addListeners(document.getElementById('div2'), 'Div 2');
+        addListeners(document.getElementById('div3'), 'Div 3');
+
+        
+        addListeners(document.getElementById('btn1'), 'Button 1');
+        addListeners(document.getElementById('btn2'), 'Button 2');
+        addListeners(document.getElementById('btn3'), 'Button 3');
+
+    
+        document.getElementById('btn3').addEventListener('click', (event) => {
+            alert('Stopping propagation at Button 3');
+            event.stopPropagation();
+        });
+    </script>
+</body>
+</html>
