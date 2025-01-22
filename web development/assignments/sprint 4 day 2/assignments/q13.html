@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Todo List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        input, button {
+            font-size: 16px;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input {
+            width: calc(100% - 22px);
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin: 5px 0;
+            background-color: #f9f9f9;
+        }
+        li.completed {
+            text-decoration: line-through;
+            background-color: #d4edda;
+        }
+        .search-bar {
+            margin-bottom: 15px;
+        }
+        .remove-btn {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        .remove-btn:hover {
+            background-color: #e53935;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Enhanced Todo List</h1>
+        <input id="taskInput" type="text" placeholder="Add a new task..." />
+        <button id="addTaskBtn">Add Task</button>
+        <input id="searchBar" class="search-bar" type="text" placeholder="Search tasks..." />
+        <ul id="taskList"></ul>
+    </div>
+
+    <script>
+        let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+    
+        function renderTasks(searchTerm = '') {
+            const taskList = document.getElementById('taskList');
+            taskList.innerHTML = ''; 
+
+            tasks
+                .filter(task => task.text.toLowerCase().includes(searchTerm.toLowerCase()))
+                .forEach(task => {
+                    const li = document.createElement('li');
+                    li.className = task.completed ? 'completed' : '';
+                    li.dataset.id = task.id;
+
+                    const span = document.createElement('span');
+                    span.textContent = task.text;
+                    span.addEventListener('click', toggleTaskCompletion);
+
+                    const removeBtn = document.createElement('button');
+                    removeBtn.textContent = 'Remove';
+                    removeBtn.className = 'remove-btn';
+                    removeBtn.addEventListener('click', removeTask);
+
+                    li.appendChild(span);
+                    li.appendChild(removeBtn);
+                    taskList.appendChild(li);
+                });
+        }
+
+    
+        document.getElementById('addTaskBtn').addEventListener('click', () => {
+            const taskInput = document.getElementById('taskInput');
+            const taskText = taskInput.value.trim();
+            if (taskText) {
+                tasks.push({
+                    id: Date.now(),
+                    text: taskText,
+                    completed: false
+                });
+                taskInput.value = '';
+                updateLocalStorage();
+                renderTasks();
+            } else {
+                alert('Task cannot be empty!');
+            }
+        });
+
+    
+        function toggleTaskCompletion(event) {
+            const taskId = parseInt(event.target.parentElement.dataset.id, 10);
+            const task = tasks.find(task => task.id === taskId);
+            if (task) {
+                task.completed = !task.completed;
+                updateLocalStorage();
+                renderTasks();
+            }
+        }
+
+    
+        function removeTask(event) {
+            const taskId = parseInt(event.target.parentElement.dataset.id, 10);
+            tasks = tasks.filter(task => task.id !== taskId);
+            updateLocalStorage();
+            renderTasks();
+        }
+
+    
+        function updateLocalStorage() {
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
+
+        
+        document.getElementById('searchBar').addEventListener('input', (event) => {
+            renderTasks(event.target.value);
+        });
+
+    
+        renderTasks();
+    </script>
+</body>
+</html>
